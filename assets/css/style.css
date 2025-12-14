@@ -1,0 +1,291 @@
+/* assets/css/style.css */
+
+/* 1. GOOGLE FONTS IMPORT */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700;800&display=swap');
+
+/* 2. VARIABLES & RESET */
+:root {
+    --primary: #4f46e5;       /* Indigo 600 */
+    --primary-glow: rgba(79, 70, 229, 0.4);
+    --secondary: #10b981;     /* Emerald 500 */
+    --dark: #0f172a;          /* Slate 900 */
+    --light: #f8fafc;         /* Slate 50 */
+    --gray-text: #64748b;     /* Slate 500 */
+    --white: #ffffff;
+    --glass: rgba(255, 255, 255, 0.85);
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --radius: 16px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--light);
+    color: var(--dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* 3. ANIMATIONS (KEYFRAMES) */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes glowPulse {
+    0% { box-shadow: 0 0 0 0 var(--primary-glow); }
+    70% { box-shadow: 0 0 0 15px rgba(79, 70, 229, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); }
+}
+
+/* 4. HEADER & NAVBAR */
+header {
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 1rem 0;
+    box-shadow: var(--shadow-sm);
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--dark);
+    text-decoration: none;
+    letter-spacing: -1px;
+    transition: color 0.3s;
+}
+
+.nav-link {
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 2rem;
+    transition: color 0.3s;
+    position: relative;
+}
+
+.nav-link:hover { color: var(--primary); }
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--primary);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after { width: 100%; }
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary-sm {
+    background: var(--primary);
+    color: white;
+    font-size: 0.9rem;
+    padding: 0.6rem 1.4rem;
+    margin-left: 1.5rem;
+}
+
+.btn-primary-sm:hover {
+    background: #4338ca;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--primary-glow);
+}
+
+/* 5. HERO SECTION */
+.hero-section {
+    position: relative;
+    padding: 8rem 2rem 6rem;
+    text-align: center;
+    background: radial-gradient(circle at top right, #e0e7ff, transparent 40%),
+                radial-gradient(circle at bottom left, #d1fae5, transparent 40%);
+    overflow: hidden;
+}
+
+.hero-section h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 4rem;
+    line-height: 1.1;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    color: var(--dark);
+    letter-spacing: -1.5px;
+    animation: fadeInDown 1s ease-out;
+}
+
+.hero-section p {
+    font-size: 1.25rem;
+    color: var(--gray-text);
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    animation: fadeInUp 1s ease-out 0.3s backwards; /* Delay */
+}
+
+.btn-lg {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    animation: pulse 2s infinite;
+}
+
+.btn-primary:hover {
+    background: #4338ca;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px var(--primary-glow);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: white;
+}
+
+/* 6. CARD GRID & MODERN CARDS */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.grid-books {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2.5rem;
+    margin-top: 2rem;
+}
+
+.book-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy effect */
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    animation: fadeInUp 0.8s ease-out backwards;
+}
+
+.book-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: var(--shadow-hover);
+}
+
+.card-img-placeholder {
+    height: 240px;
+    background-color: #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Image Hover Zoom Effect */
+.card-img-placeholder img {
+    transition: transform 0.5s ease;
+}
+.book-card:hover .card-img-placeholder img {
+    transform: scale(1.1);
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-body h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    margin: 0.5rem 0;
+    color: var(--dark);
+}
+
+/* Price Badge */
+.price-tag {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--primary);
+}
+/* ===========================
+   HERO ANIMATIONS
+   =========================== */
+
+/* Define the keyframes for the fade-in-up effect */
+@keyframes fadeInUpSmooth {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply animation to the main headline */
+.hero-content h1 {
+    animation: fadeInUpSmooth 1s ease-out forwards;
+}
+
+/* Apply animation to the paragraph text with a slight delay */
+.hero-content p {
+    opacity: 0; /* Start invisible so it doesn't flash before animating */
+    animation: fadeInUpSmooth 1s ease-out 0.4s forwards; /* 0.4s delay */
+}
+
+/* Apply animation to the buttons with a longer delay */
+.hero-buttons {
+    opacity: 0; /* Start invisible */
+    animation: fadeInUpSmooth 1s ease-out 0.8s forwards; /* 0.8s delay */
+}
